@@ -1,11 +1,21 @@
+#include <cmath>
+#include "coordinates.h"
 #include "piece.h"
 
-piece::piece(char type){
+piece::piece(){
+	type='P';
+	color=false;
+	in_play=false;
+	position.x=0;
+	position.y=0;
+}
+
+piece::piece(char t, bool c, coordinates p){
 	type = t;
-	color = false;
+	color = c;
 	in_play = true;
-	position.x = 0;
-	position.y = 0;
+	position.x = p.x;
+	position.y = p.y;
 }
 
 //Getters
@@ -26,25 +36,25 @@ coordinates piece::get_position(){
 }
 
 //Setters
-void set_type(char t){
+void piece::set_type(char t){
 	type = t;
 }
-void set_color(bool c){
+void piece::set_color(bool c){
 	color = c;
 }
-void set_play_status(bool s){
+void piece::set_play_status(bool s){
 	in_play = s;
 }
-void set_position(coordinates p){
+void piece::set_position(coordinates p){
 	position.x = p.x;
 	position.y = p.y;
 }
 
-bool move_piece(coordinates p){
-	if (p.x == position.x && p.y == position.y){
+bool piece::move_piece(coordinates p){
+	if (p.x == position.x && p.y == position.y)
 		return false;
 	else{
-		switch type{
+		switch (type){
 			case 'R':
 				return (p.x == position.x || p.y == position.y) ? true : false;
 				break;
@@ -55,13 +65,13 @@ bool move_piece(coordinates p){
 				return (p.x - position.x == p.y - position.y) ? true : false;
 				break;
 			case 'Q':
-				if (p.x == position.x || p.y == position.y || p.x - positon.x == p.y - position.y)
+				if (p.x == position.x || p.y == position.y || p.x - position.x == p.y - position.y)
 					return true;
 				else
 					return false;
 				break;
 			case 'K':
-				if (abs(p.x - position.x) <= 1 && abs(p.y - position.y) <=1)
+				if (std::abs(p.x - position.x) <= 1 && std::abs(p.y - position.y) <=1)
 					return true;
 				else
 					return false;
@@ -75,13 +85,13 @@ bool move_piece(coordinates p){
 							return false;
 					}
 					else if (position.y == 6){
-						if (position.y - p.y <= 2 && position.py - p.y > 0)
+						if (position.y - p.y <= 2 && position.y - p.y > 0)
 							return true;
 						else
 							return false;
 					}
 					else{
-						if (position.y - p.y == 1 && color || position.y - p.y = -1 && !color)
+						if (position.y - p.y == 1 && color || position.y - p.y == -1 && !color)
 							return true;
 						else
 							return false;

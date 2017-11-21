@@ -18,7 +18,8 @@ private:
 	bool in_play;
 	coordinates position;
 public:
-	piece(char t);
+	piece();
+	piece(char t, bool c, coordinates p);
 
 	//Getter
 	char get_type();
@@ -35,4 +36,4 @@ public:
 	bool move_piece(coordinates p);
 };
 
-#endif _PIECE
+#endif

@@ -7,4 +7,4 @@ struct coordinates
 	int y;
 };
 
-#endif _COORDINATE
+#endif
