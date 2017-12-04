@@ -102,7 +102,7 @@ bool piece::move_piece(coordinates p){
 				}
 				break;
 			case 'E':
-				return true;
+				return false;
 			default:
 				return false;
 				break;

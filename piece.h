@@ -11,6 +11,11 @@
 * E:Empty (Virtual Piece)
 */
 
+/*
+* 0 : Black
+* 1 : White
+*/
+
 class piece{
 private:
 	char type;
